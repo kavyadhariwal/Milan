@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: django-backend
+    env: docker
+    plan: free
+    branch: main                # Or change to your branch name
+    region: oregon              # Or choose closest region to you
+    dockerfilePath: ./Dockerfile
+    buildCommand: ""            # No build command for Docker
+    startCommand: ""            # Already handled by CMD in Dockerfile
+
