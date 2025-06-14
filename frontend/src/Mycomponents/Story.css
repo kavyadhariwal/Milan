@@ -1,0 +1,76 @@
+/* Story.css */
+
+.story-section {
+  background-color: #f8f9fa;
+  padding: 50px 0;
+}
+
+.story-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.story-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.story-name {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.story-icon img{
+  margin-bottom: 15px;
+   width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.name-underline {
+  width: 60px;
+  height: 3px;
+  background-color: #007bff;
+  margin-top: 5px;
+}
+
+.details-text {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.story-content {
+  align-items: flex-start;
+}
+
+h5 {
+  color: #007bff;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.details-text {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.details-text.text-muted {
+  color: #6c757d;
+  font-style: italic;
+}

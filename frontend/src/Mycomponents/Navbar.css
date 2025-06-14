@@ -1,0 +1,48 @@
+/* Navbar.css */
+
+.navbar {
+  background-color: #1a1a1a;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #ffffff !important;
+}
+
+.nav-link {
+  color: #cccccc !important;
+  margin-right: 15px;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #ffffff !important;
+}
+
+.dropdown-menu {
+  background-color: #2b2b2b;
+  border: none;
+  min-width: 150px;
+  padding: 0.5rem;
+}
+
+.dropdown-item {
+  color: #dddddd;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #444444;
+  color: #ffffff;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}

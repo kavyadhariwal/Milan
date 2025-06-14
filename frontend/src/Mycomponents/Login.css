@@ -1,0 +1,77 @@
+:root {
+  --login-primary-color: #3f4144;
+  --login-white: #ffffff;
+  --login-gray: #efefef;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+.login-container {
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(-45deg, var(--login-primary-color), #e6eaf0);
+}
+
+.login-box {
+  width: 700px;
+  height: 400px;
+  background-color: var(--login-white);
+  border-radius: 1rem;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  overflow: hidden;
+  position: relative;
+}
+
+.login-forms-wrapper {
+  display: flex;
+  width: 200%;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.login-box.sign-up-active .login-forms-wrapper {
+  transform: translateX(-50%);
+}
+
+.login-form-section {
+  width: 50%;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.login-input-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--login-gray);
+  border-radius: 5px;
+  background: var(--login-gray);
+}
+
+.login-btn {
+  background-color: var(--login-primary-color);
+  color: var(--login-white);
+  padding: 0.75rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-toggle-text {
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.login-toggle-text b {
+  color: var(--login-primary-color);
+  cursor: pointer;
+}
