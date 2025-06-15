@@ -36,4 +36,5 @@ RUN python manage.py collectstatic --noinput || echo "Collectstatic failed, cont
 EXPOSE 8000
 
 # Start Gunicorn server
-CMD ["gunicorn", "Backend.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", "Backend.wsgi:application", "--chdir", "/app", "--bind", "0.0.0.0:8000"]
+
