@@ -27,7 +27,8 @@ RUN apt-get update && apt-get install -y \
 
 # Upgrade pip and install Python dependencies
 RUN pip install --upgrade pip && \
-    pip install --retries=10 --timeout=120 -r requirements.txt
+    pip install --retries=10 --timeout=120 --no-cache-dir --progress-bar off -r requirements.txt
+
 
 # Collect static files (skip this if not needed)
 RUN python manage.py collectstatic --noinput || echo "Collectstatic failed, continuing..."
