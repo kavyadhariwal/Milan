@@ -30,3 +30,9 @@ class ClaimRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = ClaimRequest
         fields = '__all__'
+
+
+class VerifiedUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VerifiedUser
+        fields = '__all__'

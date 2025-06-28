@@ -24,7 +24,7 @@
 .card-img-top {
   width: 100%;
   height: 250px;
-  object-fit: cover;
+  object-fit: cover; /*the img is always completely filled.*/
   border-bottom: 1px solid #ddd;
 }
 

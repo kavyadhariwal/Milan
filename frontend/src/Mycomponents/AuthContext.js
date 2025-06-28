@@ -1,4 +1,4 @@
-// AuthContext.js
+
 import React, { createContext, useState, useEffect } from 'react';
 
 export const AuthContext = createContext();
@@ -49,7 +49,9 @@ export const AuthProvider = ({ children }) => {
       return null;
     }
   };
+// this above function is used to automatically get a new access token using the refresh token, without asking the user to log in again.
 
+//make authentication-related values and functions available to entire app using context api
   return (
     <AuthContext.Provider value={{ isLoggedIn, login, logout, refreshAccessToken }}>
       {children}

@@ -1,6 +1,6 @@
 import React, { useRef, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from './AuthContext';  // Make sure this path is correct
+import { AuthContext } from './AuthContext';  
 import './Login.css';
 
 const LOGIN_URL = 'http://localhost:8000/api/token/';
@@ -9,14 +9,14 @@ const REGISTER_URL = 'http://localhost:8000/api/register/';
 export default function Login() {
   const boxRef = useRef(null);
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext); // Use AuthContext login
+  const { login } = useContext(AuthContext);
 
-  // Login form states
+ 
   const [loginUsername, setLoginUsername] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [loginError, setLoginError] = useState('');
 
-  // Signup form states
+
   const [signUsername, setSignUsername] = useState('');
   const [signPassword, setSignPassword] = useState('');
   const [signError, setSignError] = useState('');
@@ -29,7 +29,7 @@ export default function Login() {
     setSignSuccess('');
   };
 
-  // Handle Login submit
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoginError('');
@@ -48,21 +48,21 @@ export default function Login() {
 
       const data = await response.json();
 
-      // Store tokens
+    
       localStorage.setItem('accessToken', data.access);
       localStorage.setItem('refreshToken', data.refresh);
 
-      // Update auth context state
+   
       login(data.access, data.refresh);
 
-      // Redirect to home page
+    
       navigate('/');
     } catch {
       setLoginError('Network error. Please try again.');
     }
   };
 
-  // Handle Signup submit
+
   const handleSignup = async (e) => {
     e.preventDefault();
     setSignError('');
@@ -83,7 +83,7 @@ export default function Login() {
       }
 
       setSignSuccess('Signup successful! Please login.');
-      // Switch to login form on successful signup
+
       boxRef.current.classList.remove('sign-up-active');
     } catch {
       setSignError('Network error. Please try again.');
@@ -94,7 +94,7 @@ export default function Login() {
     <div className="login-container">
       <div className="login-box" ref={boxRef}>
         <div className="login-forms-wrapper">
-          {/* Login Form */}
+        
           <div className="login-form-section">
             <form className="login-form" onSubmit={handleLogin}>
               <div className="login-input-group">
@@ -123,7 +123,7 @@ export default function Login() {
             </form>
           </div>
 
-          {/* Signup Form */}
+         
           <div className="login-form-section">
             <form className="login-form" onSubmit={handleSignup}>
               <div className="login-input-group">

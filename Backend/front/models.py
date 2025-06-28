@@ -86,3 +86,13 @@ class ClaimRequest(models.Model):
         return f"Claim by {self.cname} for {self.found_person}"
 
 
+class VerifiedUser(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='verification', null=True, blank=True)
+    name = models.CharField(max_length=100)
+    aadhaar_number = models.CharField(max_length=12, unique=True)
+    aadhaar_photo = models.ImageField(upload_to='aadhaar_photos/')
+    selfie_photo = models.ImageField(upload_to='selfie_photos/')
+    verified_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} ({self.aadhaar_number})"

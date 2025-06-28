@@ -1,13 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import './FoundPage.css';
 import { useNavigate } from 'react-router-dom';
-import { useAuthFetch } from './authFetch'; // ✅ Adjust the path if necessary
+import { useAuthFetch } from './authFetch'; 
 
 export default function FoundPage() {
   const [foundPeople, setFoundPeople] = useState([]);
   const [selectedPerson, setSelectedPerson] = useState(null);
   const authFetch = useAuthFetch();
   const navigate = useNavigate();
+  useEffect(() => {
+  const checkVerification = async () => {
+    try {
+      const res = await authFetch('http://127.0.0.1:8000/api/check-verification/');
+      const data = await res.json();
+
+      if (!data.is_verified) {
+        alert("🚫 You must verify your identity before accessing this page.");
+        navigate('/verify');  // redirect to verify page
+      }
+    } catch (err) {
+      console.error("🔒 Verification check failed:", err);
+      navigate('/login'); // fallback in case token is invalid
+    }
+  };
+
+  checkVerification(); // run on mount
+}, [authFetch, navigate]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,7 +41,7 @@ export default function FoundPage() {
     };
 
     fetchData();
-  }, [authFetch]); // ✅ This is correct
+  }, [authFetch]);
 
   return (
     <div className="container py-5 found-page">

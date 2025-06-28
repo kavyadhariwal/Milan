@@ -8,9 +8,10 @@ export const useAuthFetch = () => {
     let accessToken = localStorage.getItem('accessToken');
 
     // Create headers and remove Content-Type if using FormData
+    //Use current access token
     const isFormData = options.body instanceof FormData;
     const headers = {
-      ...options.headers,
+      ...options.headers,                 //copies prev headers
       Authorization: `Bearer ${accessToken}`,
     };
 
@@ -30,7 +31,7 @@ export const useAuthFetch = () => {
         logout();
         throw new Error('Session expired. Please log in again.');
       }
-
+//	Update with new token after refresh
       headers.Authorization = `Bearer ${accessToken}`;
       response = await fetch(url, {
         ...options,
@@ -43,3 +44,11 @@ export const useAuthFetch = () => {
 
   return authFetch;
 };
+
+/* this file Automatically adds the token to headers
+
+Automatically refreshes it if expired
+
+Automatically logs the user out if refresh fails
+Manages fetching data with auth, reusing tokens and context logic
+*/

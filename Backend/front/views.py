@@ -10,12 +10,16 @@ from rest_framework.generics import RetrieveAPIView, ListCreateAPIView, ListAPIV
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from rest_framework.permissions import IsAuthenticated
-from .models import Person, Complainee, FoundPerson, ClaimRequest
+from .models import Person, Complainee, FoundPerson, ClaimRequest, VerifiedUser
 from .serializers import PersonSerializer, ComplaineeWriteSerializer, ComplaineeReadSerializer, FoundPersonSerializer, ClaimRequestSerializer
 from rest_framework import generics, permissions
 from rest_framework.parsers import MultiPartParser, FormParser
-
-
+from django.core.files.storage import default_storage
+from django.conf import settings
+import os
+import easyocr
+import face_recognition
+from rest_framework.views import APIView
 # Create or List all persons
 @csrf_exempt
 @api_view(['GET', 'POST'])
@@ -32,7 +36,7 @@ def create_person(request):
         return Response(serializer.data, status=201)
     
     return Response(serializer.errors, status=400)
-
+#in above func if request is get than all objectes are serialised and fetched if post then new person is created
 
 # User registration
 @api_view(['POST'])
@@ -49,9 +53,9 @@ def register(request):
 
 # Class-based: List or Create a person
 class PersonListCreateAPIView(ListCreateAPIView):
-    queryset = Person.objects.all()
+    queryset = Person.objects.all()   #fetches all Person model instances from the database.
     serializer_class = PersonSerializer
-    parser_classes = [MultiPartParser]
+    parser_classes = [MultiPartParser]   # allows the API to handle file uploads
     permission_classes = [IsAuthenticated]
 # Class-based: Retrieve a single person by ID
 class PersonDetailAPIView(RetrieveAPIView):
@@ -124,9 +128,9 @@ def get_stats(request):
         "reunited": reunited_count,
         "age_groups": age_groups
     })
-
+#to show a list of all claims 
 class ClaimRequestListAPIView(generics.ListAPIView):
-    queryset = ClaimRequest.objects.all().order_by('-date_submitted')  # latest first
+    queryset = ClaimRequest.objects.all().order_by('-date_submitted')  
     serializer_class = ClaimRequestSerializer
 
 
@@ -167,3 +171,88 @@ class ComplaineeDetailAPIView(RetrieveDestroyAPIView):
         # then delete the person record
         person.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+
+
+
+class AadhaarVerificationView(APIView):
+    @permission_classes([IsAuthenticated])
+    def post(self, request):
+        print("\u2705 AadhaarVerificationView hit")
+        aadhaar_photo = request.FILES.get('aadhaar_photo')
+        selfie_photo = request.FILES.get('selfie_photo')
+
+        if not aadhaar_photo or not selfie_photo:
+            return Response({'error': 'Both Aadhaar and selfie photos are required.'}, status=400)
+
+        aadhaar_path = default_storage.save(f'temp/{aadhaar_photo.name}', aadhaar_photo)
+        selfie_path = default_storage.save(f'temp/{selfie_photo.name}', selfie_photo)
+        aadhaar_full_path = os.path.join(settings.MEDIA_ROOT, aadhaar_path)
+        selfie_full_path = os.path.join(settings.MEDIA_ROOT, selfie_path)
+
+        try:
+            # OCR
+            reader = easyocr.Reader(['en', 'hi'], gpu=False)
+            result = reader.readtext(aadhaar_full_path, detail=0)
+            safe_result = [line.encode('utf-8', 'ignore').decode('utf-8') for line in result]
+
+            # Name extraction logic
+            blacklist = ['GOVERNMENT OF INDIA', 'GOVT. OF INDIA', 'MALE', 'FEMALE', 'DOB', 'YEAR OF BIRTH']
+            name = ""
+            aadhaar_number = ""
+
+            for line in safe_result:
+                cleaned = line.strip().upper()
+                if cleaned.replace(" ", "").isdigit() and len(cleaned.replace(" ", "")) == 12:
+                    aadhaar_number = cleaned.replace(" ", "")
+                elif not name and cleaned not in blacklist and cleaned.isalpha() and len(cleaned) > 3:
+                    name = line.strip()  # preserve original casing
+
+            if not name or not aadhaar_number:
+                return Response({'error': 'Failed to extract name or Aadhaar number.'}, status=400)
+
+            # Face Match
+            aadhaar_img = face_recognition.load_image_file(aadhaar_full_path)
+            selfie_img = face_recognition.load_image_file(selfie_full_path)
+            aadhaar_encs = face_recognition.face_encodings(aadhaar_img)
+            selfie_encs = face_recognition.face_encodings(selfie_img)
+
+            if not aadhaar_encs or not selfie_encs:
+                return Response({'error': 'Face not detected in one or both images.'}, status=400)
+
+            match = face_recognition.compare_faces([aadhaar_encs[0]], selfie_encs[0])[0]
+
+            if not match:
+                return Response({'error': 'Face does not match Aadhaar photo.'}, status=403)
+
+            print("\u2705 Match found:", name, aadhaar_number)
+
+            # Save verified user
+            verified = VerifiedUser.objects.create(
+                user=request.user,
+                name=name,
+                aadhaar_number=aadhaar_number,
+                aadhaar_photo=aadhaar_photo,
+                selfie_photo=selfie_photo
+            )
+
+            return Response({'message': 'Verified successfully', 'user_id': verified.id}, status=201)
+
+        except Exception as e:
+            print("\u274c Exception occurred:", str(e))
+            return Response({'error': str(e)}, status=500)
+
+        finally:
+            if os.path.exists(aadhaar_full_path): os.remove(aadhaar_full_path)
+            if os.path.exists(selfie_full_path): os.remove(selfie_full_path)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def check_verification(request):
+    verified = hasattr(request.user, 'verification')
+    return Response({'is_verified': verified})
+
+
+
+    

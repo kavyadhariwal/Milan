@@ -1,6 +1,6 @@
 .found-page .square-photo {
   width: 100%;
-  padding-top: 100%; /* Makes it square */
+  padding-top: 100%; 
   background-size: cover;
   background-position: center;
   cursor: pointer;

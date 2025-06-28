@@ -17,8 +17,8 @@ import Claim from './Mycomponents/Claim';
 import Login from './Mycomponents/Login';
 import AllReports from './Mycomponents/AllReports';
 import Story from './Mycomponents/Story';
-
 import Profile from './Mycomponents/Profile';
+import Verify from './Mycomponents/Verify';
 function App() {
   return (
     <AuthProvider>
@@ -30,7 +30,7 @@ function App() {
             <Route
               path="/"
               element={
-                <>
+                <>   
                   <Banner />
                   <About />
                   <Comments />
@@ -47,9 +47,10 @@ function App() {
             <Route path="/claim/:id" element={<Claim />} />
             <Route path="/reportFound" element={<ReportFound />} />
             <Route path="/allReports" element={<AllReports />} />
-             <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/story/:id" element={<Story />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/verify" element={<Verify />}/>
 
           </Routes>
         </>

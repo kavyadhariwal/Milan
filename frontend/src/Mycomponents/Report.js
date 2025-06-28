@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect,useState } from 'react';
 import './Report.css';
 import { useNavigate } from 'react-router-dom';
+import { useAuthFetch } from './authFetch';
+
 
 const stateCityMap = {
   RJ: ['Jaipur', 'Jodhpur', 'Udaipur'],
@@ -10,6 +12,8 @@ const stateCityMap = {
 
 export default function Report() {
   const navigate = useNavigate();
+  const authFetch = useAuthFetch();
+
 
   const [state, setState] = useState('');
   const [city, setCity] = useState('');
@@ -22,7 +26,7 @@ export default function Report() {
   const [address, setAddress] = useState('');
   const [address1, setAddress1] = useState('');
 
-  // Success and error messages for UI feedback (instead of alert)
+ 
   const [successMsg, setSuccessMsg] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   // Disable submit button while submitting
@@ -46,8 +50,9 @@ if (!nameRegex.test(fname)) {
 }
 const selectedDate = new Date(date);
 const today = new Date();
-today.setHours(0, 0, 0, 0); // reset time to ignore time part
-if (selectedDate > today+1) {
+today.setHours(0, 0, 0, 0); 
+selectedDate.setHours(0, 0, 0, 0);
+if (selectedDate > today) {
   alert('Date cannot be in the future.');
   setSubmitting(false);
   return;
@@ -100,13 +105,33 @@ if (selectedDate > today+1) {
       setSubmitting(false);
     }
   };
+useEffect(() => {
+  const checkVerification = async () => {
+    try {
+      const res = await authFetch('http://127.0.0.1:8000/api/check-verification/');
+      const data = await res.json();
+
+      if (!data.is_verified) {
+        alert("🚫 You must verify your identity before accessing this page.");
+        navigate('/verify');  // redirect to verify page
+      }
+    } catch (err) {
+      console.error("🔒 Verification check failed:", err);
+      navigate('/login'); // fallback in case token is invalid
+    }
+  };
+
+  checkVerification(); // run on mount
+}, [authFetch, navigate]);
 
   return (
+    
     <div className="report-container">
       <form onSubmit={handleSubmit} className="report-form">
         <h2 className="mb-4">Report a Missing Person</h2>
 
-        {/* Success or error messages showing above form */}
+       
+
         {successMsg && (
           <div className="mb-4 p-3 bg-green-100 text-green-800 rounded">{successMsg}</div>
         )}

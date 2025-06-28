@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import './Report.css';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useAuthFetch } from './authFetch';  // ← import your hook
+import { useAuthFetch } from './authFetch';  
 
 export default function Info() {
   const location = useLocation();
   const navigate = useNavigate();
-  const authFetch = useAuthFetch();          // ← instantiate
+  const authFetch = useAuthFetch();          
 
   const personId = location.state?.personId;
   const [fullname, setFullname] = useState('');
@@ -94,8 +94,7 @@ export default function Info() {
           <div className="mb-4 p-3 bg-red-100 text-red-800 rounded">{errorMsg}</div>
         )}
 
-        {/* ...all your inputs as before, with disabled={submitting} */}
-        {/* Full Name */}
+       
         <div className="form-group mb-3">
           <label>Full Name</label>
           <input
@@ -108,7 +107,7 @@ export default function Info() {
           />
         </div>
 
-        {/* Email */}
+       
         <div className="form-group mb-3">
           <label>Email</label>
           <input
@@ -121,7 +120,7 @@ export default function Info() {
           />
         </div>
 
-        {/* Contact */}
+        
         <div className="form-group mb-3">
           <label>Contact</label>
           <input
@@ -134,7 +133,7 @@ export default function Info() {
           />
         </div>
 
-        {/* Relation */}
+       
         <div className="form-group mb-4">
           <label>Relation</label>
           <textarea
@@ -147,7 +146,7 @@ export default function Info() {
           />
         </div>
 
-        {/* Address */}
+        
         <div className="form-group mb-3">
           <label>Address</label>
           <input
@@ -160,7 +159,7 @@ export default function Info() {
           />
         </div>
 
-        {/* Address 2 */}
+        
         <div className="form-group mb-3">
           <label>Address 2</label>
           <input
@@ -172,7 +171,7 @@ export default function Info() {
           />
         </div>
 
-        {/* City */}
+        
         <div className="form-group mb-3">
           <label>City</label>
           <input
@@ -185,7 +184,7 @@ export default function Info() {
           />
         </div>
 
-        {/* State */}
+        
         <div className="form-group mb-3">
           <label>State</label>
           <select

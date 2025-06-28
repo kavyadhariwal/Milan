@@ -34,7 +34,7 @@ def perform_matching(missing_instance, found_instance):
                           .update(notified_about_match=False)
 
 @receiver(post_save, sender=Person)
-def on_person_saved(sender, instance, created, **kwargs):
+def on_person_saved(sender, instance, created, **kwargs):   #kwargs Extra keyword arguments passed by Django (usually not used unless needed).
     # only run on create
     if created:
         for f in FoundPerson.objects.exclude(photo=''):

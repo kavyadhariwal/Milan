@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Feedback.css";
-import { useAuthFetch } from "./authFetch"; // ✅ Import the custom hook
+import { useAuthFetch } from "./authFetch"; 
 
 export default function Feedback() {
   const [feedbacks, setFeedbacks] = useState([]);
   const [loading, setLoading] = useState(true);
-  const authFetch = useAuthFetch(); // ✅ Use the custom fetch
+  const authFetch = useAuthFetch(); 
 
   useEffect(() => {
     const fetchFeedback = async () => {

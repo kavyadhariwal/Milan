@@ -1,4 +1,4 @@
-// Profile.js
+
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Profile.css';
@@ -96,9 +96,16 @@ export default function Profile() {
       console.error('Error marking as notified:', err);
     }
   };
+  useEffect(() => {
+  const token = localStorage.getItem('accessToken');
+  if (!token) {
+    alert('🔒 Please login first.');
+    navigate('/login');
+  }
+}, []);
 
   useEffect(() => {
-  // define your loader once
+
   const loadProfileData = async () => {
     setError(null);
     setLoading(true);
@@ -122,7 +129,7 @@ export default function Profile() {
   // run immediately on mount
   loadProfileData();
 
-  // then every 30 seconds
+
   const interval = setInterval(loadProfileData, 30_000);
 
   // cleanup on unmount

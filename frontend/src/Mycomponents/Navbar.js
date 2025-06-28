@@ -9,9 +9,9 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   const handleLogout = (e) => {
-    e.preventDefault(); // prevent default link behavior
-    logout();           // clear tokens and update context
-    navigate('/login'); // redirect to login page
+    e.preventDefault(); 
+    logout();           
+    navigate('/login'); 
   };
 
   return (
@@ -39,6 +39,8 @@ export default function Navbar() {
 
         <ul className="dropdown-menu dropdown-menu-end text-small" aria-labelledby="dropdownUser">
           <li><a className="dropdown-item" href="/profile">Profile</a></li>
+          <li><hr className="dropdown-divider" /></li>
+          <li><a className="dropdown-item" href="/verify">Verify Aadhar</a></li>
           <li><hr className="dropdown-divider" /></li>
           {isLoggedIn && (
             <li>

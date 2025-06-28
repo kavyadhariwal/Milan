@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Comments.css";
-import { useAuthFetch } from "./authFetch"; // ✅ Ensure correct path
+import { useAuthFetch } from "./authFetch"; 
 
 export default function Comments() {
   const [reports, setReports] = useState([]);
@@ -14,12 +14,12 @@ export default function Comments() {
         const res = await authFetch("http://127.0.0.1:8000/api/person/");
         if (!res.ok) throw new Error("Network response was not ok");
         const data = await res.json();
-        console.log("API Response:", data);
+       
         const list = Array.isArray(data) ? data : data.results || [];
         setReports(list);
       } catch (err) {
         console.error("Fetch error:", err);
-        setReports([]); // Fallback if fetch fails
+        setReports([]); 
       } finally {
         setLoading(false);
       }

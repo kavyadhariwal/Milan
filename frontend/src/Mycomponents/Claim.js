@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useAuthFetch } from './authFetch';
 
 export default function Claim() {
-  const { id } = useParams(); // found_person id
+  const { id } = useParams(); 
   const navigate = useNavigate();
   const authFetch = useAuthFetch();
   const [formData, setFormData] = useState({
@@ -22,7 +22,7 @@ export default function Claim() {
   };
 
   const handleSubmit = e => {
-    e.preventDefault();
+    e.preventDefault();                           /*Prevents the page from reloading when the form is submitted*/
 
     const nameRegex = /^[A-Za-z\s]+$/;
     const contactRegex = /^\d{10}$/;
@@ -39,6 +39,7 @@ export default function Claim() {
       return;
     }
 
+    // takes formdata and link it to id
     const payload = {
       ...formData,
       found_person: id, // link foreign key

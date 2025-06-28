@@ -26,7 +26,7 @@ export default function About() {
         <div className="about-card">
           <h3>Reunite</h3>
           <p>Verify whether a match has been identified for the person you reported.</p>
-          <a href="/profile" className="learn-more-btn">Verify Now</a>
+          <Link to="/profile" className="learn-more-btn">Verify Now</Link>
         </div>
       </div>
     </div>

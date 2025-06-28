@@ -11,11 +11,12 @@ from front.views import (
     PersonListCreateAPIView,
     PersonDetailAPIView,
     ComplaineeListCreateView,
-    FoundPersonListCreateView, ClaimRequestCreateView,FoundPersonListAPIView,ClaimRequestListAPIView, 
+    FoundPersonListCreateView, ClaimRequestCreateView,FoundPersonListAPIView,ClaimRequestListAPIView, AadhaarVerificationView,
     get_stats,
     get_profile,
     mark_notified,
     ComplaineeDetailAPIView,
+    check_verification,
 )
 
 urlpatterns = [
@@ -24,7 +25,7 @@ urlpatterns = [
     # Authentication
     path('api/register/', register, name='register'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'), #jwt generates new refreshed token
 
     # Person APIs
     path('api/person/', PersonListCreateAPIView.as_view(), name='person-list-create'),  # GET & POST
@@ -43,6 +44,8 @@ urlpatterns = [
     path('api/complainee/mark_notified/<int:complainee_id>/', mark_notified),
     path('api/complainee/', ComplaineeListCreateView.as_view(), name='complainee-list-create'),
     path('api/complainee/<int:pk>/', ComplaineeDetailAPIView.as_view(), name='complainee-detail'),
+    path('api/verify/', AadhaarVerificationView.as_view(), name='aadhaar-verify'),
+    path('api/check-verification/', check_verification),
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
