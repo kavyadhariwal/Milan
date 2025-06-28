@@ -24,10 +24,15 @@ RUN apt-get update && apt-get install -y \
     libffi-dev \
     python3-dev \
     && rm -rf /var/lib/apt/lists/*
- # Upgrade pip and install CPU-only PyTorch packages
-RUN pip install --upgrade pip && \
-    pip install --find-links=https://download.pytorch.org/whl/cpu torch==2.0.1+cpu torchvision==0.15.2+cpu && \
-    pip install --retries=10 --timeout=120 --no-cache-dir --progress-bar off -r requirements.txt
+ 
+# Upgrade pip
+RUN pip install --upgrade pip
+
+# Install CPU-only Torch and TorchVision
+RUN pip install torch==2.0.1+cpu torchvision==0.15.2+cpu --index-url https://download.pytorch.org/whl/cpu
+
+# Install rest of the requirements
+RUN pip install --retries=10 --timeout=120 --no-cache-dir --progress-bar off -r requirements.txt
 
 # Collect static files (skip this if not needed)
 RUN python manage.py collectstatic --noinput || echo "Collectstatic failed, continuing..."
