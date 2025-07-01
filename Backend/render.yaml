@@ -3,8 +3,8 @@ services:
     name: django-backend
     env: docker
     plan: free
-    branch: master                # Or change to your branch name
-    region: oregon              # Or choose closest region to you
+    branch: master              
+    region: oregon            
     dockerfilePath: ./Dockerfile
              
 
