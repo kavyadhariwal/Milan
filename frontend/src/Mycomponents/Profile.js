@@ -149,6 +149,7 @@ export default function Profile() {
 
   return (
     <div className="profile-container">
+    <div className="profile-box">
       <div className="profile-header">
         <h1>Welcome, {userInfo.name}</h1>
         <p>{userInfo.email}</p>
@@ -201,6 +202,7 @@ export default function Profile() {
           ))
         )}
       </div>
+    </div>
     </div>
   );
 }

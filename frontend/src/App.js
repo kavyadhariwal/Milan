@@ -2,8 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './Mycomponents/AuthContext';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-
+import './Mycomponents/Button.css'; 
 import Navbar from './Mycomponents/Navbar';
+import Footer from './Mycomponents/Footer';
 import Banner from './Mycomponents/Banner';
 import About from './Mycomponents/About';
 import Comments from './Mycomponents/Comments';
@@ -23,8 +24,9 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <>
+        <div className="App app-wrapper">
           <Navbar />
+              <main className="flex-grow-1">
           <Routes>
 
             <Route
@@ -40,7 +42,7 @@ function App() {
               }
             />
 
-            {/* Other routes */}
+        
             <Route path="/report" element={<Report />} />
             <Route path="/foundPage" element={<FoundPage />} />
             <Route path="/info" element={<Info />} />
@@ -53,7 +55,9 @@ function App() {
             <Route path="/verify" element={<Verify />}/>
 
           </Routes>
-        </>
+          </main>
+         <Footer />
+          </div>
       </Router>
     </AuthProvider>
   );

@@ -1,48 +1,46 @@
-.report-container {
+.claim-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
-  animation: fadeIn 1s ease-in-out;
-
+  padding: 30px;
   min-height: 100vh;
-  
+  animation: fadeIn 1s ease-in-out;
 }
 
-.report-form {
+.claim-form {
   background-color: #fff;
   padding: 40px;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   animation: popIn 0.8s ease-out;
   width: 100%;
-  max-width: 800px;
+  max-width: 600px;
 }
 
-.report-form h2 {
+.claim-form h2 {
   margin-bottom: 20px;
   text-align: center;
   color: #2c3e50;
 }
 
-.report-form .form-label {
+.claim-form .form-label {
   color: #34495e;
 }
 
-.report-form .form-control,
-.report-form .form-select {
+.claim-form .form-control,
+.claim-form .form-select {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   animation: slideIn 0.5s ease forwards;
   opacity: 0;
 }
 
-.report-form .form-control:hover,
-.report-form .form-select:hover {
+.claim-form .form-control:hover,
+.claim-form .form-select:hover {
   transform: scale(1.03);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.report-form button {
+.claim-form button {
   margin-top: 20px;
   width: 100%;
   animation: pulse 2s infinite;

@@ -2,6 +2,8 @@
   max-width: 1200px;
   margin: auto;
   padding: 20px;
+ margin-top: 20px;
+
 }
 
 .comment-heading {
@@ -13,6 +15,10 @@
 
 
 .report-card {
+   height: 100%;           
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
@@ -33,27 +39,23 @@
 .card-body {
   padding: 15px;
   text-align: center;
+  height: 200px;       
+  overflow: hidden;
 }
 
 .card-title {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #007bff;
+  color: #172946;
+  margin-bottom: 10px;
 }
 
 .card-text {
   font-size: 2rem;
-  color: #007bff;
+  color: #172946;
+  margin-bottom: 10px;
 }
 
-/* .btn-primary {
-  background-color: #007bff;
-  border: none;
-  padding: 10px 15px;
-  font-size: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-} */
 
 
 .text-center {
@@ -84,15 +86,21 @@ flex-basis: 30%;
   max-width: 30%; */
 }
 
-.read-more-link {
-  text-decoration: none;
-  color: #007bff; 
-  font-weight: 500;
-  font-size: 1.2rem;
-  margin-bottom: 10px;
+.rotate-btn {
+  font-size: 28px;
+  width: 48px;
+  height: 48px;
+  background-color: #172946;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  margin-left: auto;
+  margin-right: 10px;
 }
 
-.read-more-link:hover {
-  text-decoration: underline;
+.rotate-btn:hover {
+  transform: rotate(90deg) scale(1.1);
 }
-

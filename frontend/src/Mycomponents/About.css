@@ -1,60 +1,91 @@
 .about-container {
-  padding: 40px 20px;
+  padding: 60px 20px 10px;
+  min-height: 100vh;
+  color: #fff;
   text-align: center;
+  animation: fadeIn 1s ease-in;
+  margin-bottom: 0%;
 }
 
 .about-heading {
-  font-size: 2.2rem;
-  margin-bottom: 10px;
-   font-weight: bold;
-   color: #333;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  animation: slideInLeft 0.8s ease-out forwards;
+  font-weight: 700;
+  color: #2c3e50;
 }
 
 .about-description {
-  font-size: 1.1rem;
-  color: #555;
-  margin-bottom: 30px;
-  max-width: 700px;
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  max-width: 500px;
   margin-left: auto;
   margin-right: auto;
+  animation: slideInLeft 1s ease-out forwards;
+  animation-delay: 0.2s;
+  opacity: 0;
+  color:#172946
 }
 
 .card-container {
   display: flex;
-  justify-content: center;
-  gap: 20px;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
 }
 
 .about-card {
-  background-color: #ffffff;
-  padding: 25px;
-  width: 300px;
+  background-color: white;
+  color: #2c3e50;
+  padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 300px;
+  height:250px;
   text-align: left;
+  animation: slideInLeft 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.about-card:nth-child(1) {
+  animation-delay: 0.3s;
+}
+.about-card:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.about-card:nth-child(3) {
+  animation-delay: 0.7s;
 }
 
 .about-card h3 {
-  font-size: 1.4rem;
-  margin-bottom: 10px;
+  font-size: 1.75rem;
+  margin-bottom: 12px;
 }
 
 .about-card p {
-  font-size: 1rem;
-  color: #666;
+  font-size: 1.1rem;      
+  line-height: 1.6;     
+  margin-bottom: 15px;
 }
 
-.learn-more-btn {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: white;
-  border-radius: 6px;
-  text-decoration: none;
+
+/* Animations */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
-.learn-more-btn:hover {
-  background-color: #0056b3;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

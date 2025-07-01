@@ -115,7 +115,7 @@ export default function Login() {
                   required
                 />
               </div>
-              <button type="submit" className="login-btn">Login</button>
+              <button type="submit" className="cusbtn">Login</button>
               {loginError && <p className="error">{loginError}</p>}
               <p className="login-toggle-text">
                 Don't have an account? <b onClick={toggleForm}>Sign up</b>
@@ -144,7 +144,7 @@ export default function Login() {
                   required
                 />
               </div>
-              <button type="submit" className="login-btn">Sign Up</button>
+              <button type="submit" className="login-btn cusbtn">Sign Up</button>
               {signError && <p className="error">{signError}</p>}
               {signSuccess && <p className="success">{signSuccess}</p>}
               <p className="login-toggle-text">

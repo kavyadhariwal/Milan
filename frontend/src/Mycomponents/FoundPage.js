@@ -65,7 +65,7 @@ export default function FoundPage() {
 
       <div className="text-center mt-5">
         <button
-          className="btn btn-success"
+          className="cusbtn"
           onClick={() => navigate('/reportFound')}
         >
           Report Found Person
@@ -89,11 +89,11 @@ export default function FoundPage() {
             />
             <p><strong>Description:</strong> {selectedPerson.description || 'N/A'}</p>
             <p><strong>Date Found:</strong> {selectedPerson.date_found}</p>
-            <p><strong>Found at:</strong> {selectedPerson.address}, {selectedPerson.city}, {selectedPerson.state}</p>
+            <p><strong>Meet at:</strong> {selectedPerson.address}, {selectedPerson.city}, {selectedPerson.state}</p>
             <p className="contact-highlight"><strong>Contact:</strong> {selectedPerson.contact}</p>
 
             <button
-              className="btn btn-primary mt-3"
+              className="cusbtn mt-3"
               onClick={() => navigate(`/claim/${selectedPerson.id}`)}
             >
               I know this Person

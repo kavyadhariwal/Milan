@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthFetch } from './authFetch';
+import './ReportFound.css';
 
 export default function ReportFound() {
   const navigate = useNavigate();
@@ -85,8 +86,9 @@ export default function ReportFound() {
 
   return (
     <div className="container py-5">
-      <h2 className="mb-4">Report a Found Person</h2>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <h2 className="mb-4 text-center">Report a Found Person</h2>
+       <div className="report-container">
+      <form onSubmit={handleSubmit} encType="multipart/form-data" className="report-form">
         <div className="mb-3">
           <label>Name (if known)</label>
           <input type="text" className="form-control" name="name" onChange={handleChange} />
@@ -124,8 +126,9 @@ export default function ReportFound() {
           <label>City</label>
           <input type="text" className="form-control" name="city" onChange={handleChange} />
         </div>
-        <button type="submit" className="btn btn-primary mt-3">Submit Report</button>
+        <button type="submit" className="cusbtn mt-3">Submit Report</button>
       </form>
+      </div>
     </div>
   );
 }

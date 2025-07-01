@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuthFetch } from './authFetch';
+import './Claim.css';
 
 export default function Claim() {
   const { id } = useParams(); 
@@ -68,9 +69,9 @@ export default function Claim() {
   };
 
   return (
-    <div className="container py-5">
-      <h2 className="mb-4">Let's connect with your loved one </h2>
-      <form onSubmit={handleSubmit}>
+    <div className="claim-container">
+  <form onSubmit={handleSubmit} className="claim-form">
+    <h2 className="mb-4">Let's connect with your loved one</h2>
         <div className="mb-3">
           <label>Your Name *</label>
           <input type="text" name="cname" className="form-control" required onChange={handleChange} />
@@ -87,7 +88,7 @@ export default function Claim() {
           <label>Message</label>
           <textarea name="message" rows="3" className="form-control" onChange={handleChange}></textarea>
         </div>
-        <button type="submit" className="btn btn-success mt-3">Submit</button>
+        <button type="submit" className="cusbtn mt-3">Submit</button>
       </form>
     </div>
   );

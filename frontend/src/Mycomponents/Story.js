@@ -99,8 +99,8 @@ export default function Story() {
         </div>
       </div>
       <div className="text-center mt-4">
-        <Link to="/allReports" className="btn btn-primary">
-          Back 
+        <Link to="/" className="cusbtn">
+          Back to Home
         </Link>
       </div>
     </section>

@@ -148,7 +148,7 @@ export default function Info() {
 
         
         <div className="form-group mb-3">
-          <label>Address</label>
+          <label>Address line 1</label>
           <input
             type="text"
             className="form-control"
@@ -161,7 +161,7 @@ export default function Info() {
 
         
         <div className="form-group mb-3">
-          <label>Address 2</label>
+          <label>Address line 2</label>
           <input
             type="text"
             className="form-control"
@@ -204,7 +204,7 @@ export default function Info() {
         <div className="form-group">
           <button
             type="submit"
-            className="submit-btn btn btn-primary"
+            className="submit-btn cusbtn"
             disabled={submitting}
           >
             {submitting ? 'Submitting…' : 'Submit'}

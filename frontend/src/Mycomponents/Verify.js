@@ -105,7 +105,7 @@ export default function Verify() {
         <div className="form-group">
           <button
             type="submit"
-            className="submit-btn btn btn-primary"
+            className="submit-btn cusbtn"
             disabled={submitting}
           >
             {submitting ? 'Verifying…' : 'Verify Identity'}

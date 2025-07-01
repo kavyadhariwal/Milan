@@ -233,7 +233,7 @@ useEffect(() => {
         </div>
 
         <div className="form-group mb-3">
-          <label htmlFor="inputAddress">Address</label>
+          <label htmlFor="inputAddress">Address line 1</label>
           <input
             type="text"
             className="form-control"
@@ -247,7 +247,7 @@ useEffect(() => {
         </div>
 
         <div className="form-group mb-3">
-          <label htmlFor="inputAddress2">Address line2</label>
+          <label htmlFor="inputAddress2">Address line 2</label>
           <input
             type="text"
             className="form-control"
@@ -295,7 +295,7 @@ useEffect(() => {
         </div>
 
         <div className="form-group mt-4">
-          <button type="submit" className="submit-btn btn btn-primary" disabled={submitting}>
+          <button type="submit" className="submit-btn  cusbtn" disabled={submitting}>
             {submitting ? 'Submitting...' : 'Submit'}
           </button>
         </div>

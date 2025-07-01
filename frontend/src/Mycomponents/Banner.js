@@ -13,16 +13,28 @@ export default function Banner() {
   };
 
   return (
-    <div className="hero-banner" style={{ backgroundImage: `url(${abc})` }}>
-      <h1 className="text-dark">Reunite with your family members</h1>
-      <p className="col-lg-8 mx-auto fs-5 text-light">Find your loved ones now</p>
-      <div className="d-inline-flex gap-2 mb-5">
-        {!isLoggedIn && (
-          <button onClick={handleGetStarted} className="btn btn-primary btn-lg px-4">
+     <div className="banner-section">
+      <div className="container d-flex align-items-center justify-content-between flex-wrap">
+        <div className="banner-text">
+          <h1 className="display-4 fw-bold">Reunite with your family members</h1>
+         <p className="lead">
+  In every corner, a loved one is waiting to be found. <br />
+  Every photo carries a heartbeat, a hope, a home. <br />
+  Let’s bring them back where they belong — with family.
+</p>
+         
+        {!isLoggedIn === true && (
+          <button onClick={handleGetStarted} className="cusbtn">
             Get Started
           </button>
         )}
+   
+        </div>
+        <div className="banner-img">
+          <img src={abc} alt="Reunion" className="img-fluid rounded" />
+        </div>
       </div>
     </div>
   );
 }
+    

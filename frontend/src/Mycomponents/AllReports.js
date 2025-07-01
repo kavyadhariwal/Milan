@@ -61,7 +61,7 @@ If neither, just set it to an empty array.*/
                     {new Date(person.date).toLocaleDateString()}, {person.city},{" "}
                     {person.state}
                   </p>
-                  <Link to={`/story/${person.id}`} className="btn btn-primary">
+                  <Link to={`/story/${person.id}`} className="cusbtn">
                     View more
                   </Link>
                 </div>
@@ -75,7 +75,7 @@ If neither, just set it to an empty array.*/
         )}
       </div>
       <div className="text-center mt-4">
-        <Link to="/" className="btn btn-primary">
+        <Link to="/" className="cusbtn">
           Back to Home
         </Link>
       </div>
